@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Rōnin · Monitor de Sistema</title>
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body data-level="ok">
+<svg id="scene" viewBox="0 0 1000 600" preserveAspectRatio="xMidYMin meet" aria-hidden="true">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#17191c"/><stop offset=".65" stop-color="#43464b"/><stop offset="1" stop-color="#101214"/></linearGradient>
+    <linearGradient id="moon" x1="0" y1="0" x2="0" y2="1"><stop offset=".5" stop-color="#fff"/><stop offset="1" stop-color="#e8433f"/></linearGradient>
+    <radialGradient id="halo"><stop offset=".45" stop-color="#fff" stop-opacity=".4"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>
+    <radialGradient id="glow"><stop offset="0" stop-color="#ff5a36" stop-opacity=".55"/><stop offset="1" stop-color="#ff5a36" stop-opacity="0"/></radialGradient>
+    <linearGradient id="fog" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#43464b" stop-opacity="0"/><stop offset="1" stop-color="#43464b" stop-opacity=".85"/></linearGradient>
+    <linearGradient id="fade" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#101214"/><stop offset="1" stop-color="#101214" stop-opacity="0"/></linearGradient>
+    <pattern id="grass" width="10" height="14" patternUnits="userSpaceOnUse" patternTransform="rotate(-22)"><path d="M2 0v14M7 3v11" stroke="#d5d8dc" stroke-width="1.2" opacity=".6"/></pattern>
+    <g id="hut"><polygon points="-12,0 30,-26 72,0" fill="#0c0d0f" stroke="#2b2e33"/><rect x="4" width="52" height="30" fill="#08090a"/></g>
+    <g id="fire"><circle r="48" fill="url(#glow)" class="glow"/><path class="flame" d="M0,0C-16,-10-14,-28-4,-44-2,-28 6,-26 8,-38 22,-22 18,-8 0,0Z" fill="#e63946"/><path class="flame in" d="M0,0C-8,-5-7,-14-1,-22 2,-14 8,-12 6,-6 5,-2 2,0 0,0Z" fill="#ffb347"/></g>
+  </defs>
+  <rect width="1000" height="600" fill="url(#sky)"/>
+  <circle cx="230" cy="140" r="170" fill="url(#halo)"/>
+  <circle cx="230" cy="140" r="62" fill="url(#moon)"/>
+  <g fill="#15171b" opacity=".92">
+    <rect x="688" y="40" width="4" height="30"/>
+    <polygon points="632,100 690,70 748,100 762,108 618,108"/><rect x="650" y="108" width="80" height="28"/>
+    <polygon points="620,150 690,120 760,150 778,160 602,160"/><rect x="640" y="160" width="100" height="32"/>
+    <polygon points="600,205 690,172 780,205 802,217 578,217"/><rect x="626" y="217" width="128" height="120"/>
+  </g>
+  <rect x="540" y="200" width="300" height="190" fill="url(#fog)"/>
+  <path d="M0,385Q200,355 400,390T1000,372V600H0Z" fill="#0e1013"/>
+  <use href="#hut" x="40" y="436"/><use href="#hut" x="330" y="424"/><use href="#hut" x="560" y="418"/><use href="#hut" x="790" y="412"/><use href="#hut" x="900" y="434"/>
+  <use href="#hut" x="110" y="396"/><use href="#hut" x="230" y="410"/>
+  <use href="#fire" x="140" y="374"/><use href="#fire" x="262" y="388" transform="translate(262 388) scale(.8) translate(-262 -388)"/>
+  <rect y="455" width="1000" height="145" fill="url(#grass)" opacity=".75"/>
+  <rect y="430" width="1000" height="60" fill="url(#fade)"/>
+  <path d="M60 520h.1M130 548h.1M210 500h.1M255 566h.1M330 530h.1M390 488h.1M95 585h.1M610 540h.1M700 575h.1M780 510h.1M860 560h.1M930 528h.1M450 575h.1M560 590h.1M150 495h.1M900 590h.1" stroke="#d90429" stroke-width="6" stroke-linecap="round"/>
+  <g fill="#050506" stroke="#050506">
+    <polygon points="440,330 482,312 524,330 482,338"/>
+    <path d="M458,344L504,344 522,430 534,560H430L444,430Z"/>
+    <path d="M440,350q-34,42 6,92" fill="none" stroke-width="3"/>
+    <path d="M520,420L575,470M528,432L572,452" stroke-width="3.5"/>
+  </g>
+</svg>
+<canvas id="fx" aria-hidden="true"></canvas>
+
+<main class="wrap">
+  <header>
+    <div>
+      <h1>浪人 <span>Rōnin</span></h1>
+      <p class="sub">Monitor de sistema · <span id="time">—</span></p>
+    </div>
+    <div class="state" role="status" aria-live="polite">
+      <b id="lvl">Paz</b><small id="lvlTxt">Nenhuma ameaça no horizonte</small>
+    </div>
+  </header>
+
+  <div class="tools">
+    <button id="pause" type="button">Pausar</button>
+    <button id="now" type="button">Atualizar agora</button>
+    <span id="conn">Conectando…</span>
+  </div>
+
+  <section class="grid">
+    <article class="card wide">
+      <h2>CPU <i>刃</i></h2>
+      <div class="big" id="cpu">0%</div>
+      <div class="bar"><i id="cpuBar"></i></div>
+      <p class="mut" id="cpuModel">—</p>
+      <div id="cores" class="cores"></div>
+    </article>
+
+    <article class="card">
+      <h2>Memória RAM <i>魂</i></h2>
+      <div class="big" id="mem">0%</div>
+      <div class="bar"><i id="memBar"></i></div>
+      <p class="mut" id="memTxt">—</p>
+    </article>
+
+    <article class="card">
+      <h2>Armazenamento <i>蔵</i></h2>
+      <div class="big" id="disk">0%</div>
+      <div class="bar"><i id="diskBar"></i></div>
+      <p class="mut" id="diskTxt">—</p>
+    </article>
+
+    <article class="card">
+      <h2>Carga média</h2>
+      <dl><dt>1 min</dt><dd id="l1">—</dd><dt>5 min</dt><dd id="l5">—</dd><dt>15 min</dt><dd id="l15">—</dd></dl>
+    </article>
+
+    <article class="card">
+      <h2>Processo Node</h2>
+      <dl><dt>Heap</dt><dd id="heap">—</dd><dt>RSS</dt><dd id="rss">—</dd><dt>Ativo há</dt><dd id="pup">—</dd></dl>
+    </article>
+
+    <article class="card">
+      <h2>Sistema</h2>
+      <dl><dt>SO</dt><dd id="os">—</dd><dt>Máquina</dt><dd id="host">—</dd><dt>IP</dt><dd id="ip">—</dd><dt>Arquitetura</dt><dd id="arch">—</dd><dt>Ligado há</dt><dd id="up">—</dd><dt>Node</dt><dd id="node">—</dd></dl>
+    </article>
+
+    <article class="card wide">
+      <h2>Histórico recente</h2>
+      <svg id="hist" viewBox="0 0 200 60" preserveAspectRatio="none" role="img" aria-label="Histórico de CPU e memória">
+        <path d="M0 15H200M0 30H200M0 45H200" stroke="#fff" stroke-opacity=".1" stroke-width=".4"/>
+        <polyline id="hm" fill="none" stroke="#c9ccd1" stroke-width="1" vector-effect="non-scaling-stroke"/>
+        <polyline id="hc" fill="none" stroke="#e63946" stroke-width="1.6" vector-effect="non-scaling-stroke"/>
+      </svg>
+      <p class="legend"><span class="k r"></span>CPU <span class="k g"></span>Memória</p>
+    </article>
+  </section>
+</main>
+<script src="/js/embers.js"></script>
+<script src="/js/app.js"></script>
+</body>
+</html>
