@@ -18,7 +18,7 @@
 | | |
 |:--|:--|
 | 🎓 **Aluno** | Kauã Oliveira Lopes |
-| 👨‍🏫 **Professor** | `<NOME DO PROFESSOR, como aparece nos slides>` |
+| 👨‍🏫 **Professor** | Deivison S. Takatu |
 | 🏫 **Instituição** | Fatec Itapetininga |
 | 📘 **Disciplina** | Sistemas Operacionais |
 | 🔗 **GitHub** | [@kaua0083](https://github.com/kaua0083) |
