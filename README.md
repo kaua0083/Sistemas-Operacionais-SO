@@ -42,14 +42,14 @@ flowchart LR
 | # | Pasta | Sobre o que é |
 |:-:|:------|:--------------|
 | 1 | [📁 Aula1](https://github.com/kaua0083/Sistemas-Operacionais-SO/tree/main/Aula1) | Introdução: o que é um SO, para que serve, suas funções e seus tipos |
-| 2 | [📁 Aula2](https://github.com/kaua0083/Sistemas-Operacionais-SO/tree/main/Aula2) | _(descrição a preencher)_ |
-| 3 | [📁 aula3](https://github.com/kaua0083/Sistemas-Operacionais-SO/tree/main/aula3) | _(descrição a preencher)_ |
-| 4 | [📁 aula4](https://github.com/kaua0083/Sistemas-Operacionais-SO/tree/main/aula4) | _(descrição a preencher)_ |
-| 5 | [📁 aula5](https://github.com/kaua0083/Sistemas-Operacionais-SO/tree/main/aula5) | _(descrição a preencher)_ |
-| 5.1 | [📁 aula5_1](https://github.com/kaua0083/Sistemas-Operacionais-SO/tree/main/aula5_1) | _(descrição a preencher)_ |
-| 6 | [📁 aula6](https://github.com/kaua0083/Sistemas-Operacionais-SO/tree/main/aula6) | _(descrição a preencher)_ |
-| 7 | [📁 aula7](https://github.com/kaua0083/Sistemas-Operacionais-SO/tree/main/aula7) | _(descrição a preencher)_ |
-| 8 | [📁 aula8](https://github.com/kaua0083/Sistemas-Operacionais-SO/tree/main/aula8) | _(descrição a preencher)_ |
+| 2 | [📁 Aula2](https://github.com/kaua0083/Sistemas-Operacionais-SO/tree/main/Aula2) | Evolução Histórica dos Sistemas Operacionais |
+| 3 | [📁 aula3](https://github.com/kaua0083/Sistemas-Operacionais-SO/tree/main/aula3) | Conceitos, Funções e Tipos de Sistemas Operacionais |
+| 4 | [📁 aula4](https://github.com/kaua0083/Sistemas-Operacionais-SO/tree/main/aula4) | Estrutura e Arquitetura de Sistemas Operacionais |
+| 5 | [📁 aula5](https://github.com/kaua0083/Sistemas-Operacionais-SO/tree/main/aula5) | Introdução à Virtualização |
+| 5.1 | [📁 aula5_1](https://github.com/kaua0083/Sistemas-Operacionais-SO/tree/main/aula5_1) | Trabalho com Zorin |
+| 6 | [📁 aula6](https://github.com/kaua0083/Sistemas-Operacionais-SO/tree/main/aula6) | Nuvem e Sistemas Operacionais |
+| 7 | [📁 aula7](https://github.com/kaua0083/Sistemas-Operacionais-SO/tree/main/aula7) | Projeto Nuvem e Sistemas Operacionais |
+| 8 | [📁 aula8](https://github.com/kaua0083/Sistemas-Operacionais-SO/tree/main/aula8) | Documentacao de Software |
 
 ---
 
